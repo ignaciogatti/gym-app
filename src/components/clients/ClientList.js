@@ -30,7 +30,7 @@ class ClientList extends React.Component {
                             Pagar
                         </Link>
                         <Link to="/edit" className="ui basic red button" onClick={()=>this.props.updateCurrentClient(client)}>
-                            Editar
+                            Ver detalle
                         </Link>
                     </div>
                     </div>
@@ -43,7 +43,7 @@ class ClientList extends React.Component {
     render(){
         return (
             <div>
-                <h3>Listar Clientes</h3>
+                <h3>Clientes</h3>
                 <div className="ui cards" >{this.renderList()}</div>
             </div>
             

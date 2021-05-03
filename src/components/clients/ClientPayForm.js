@@ -58,7 +58,7 @@ class ClientPayForm extends React.Component {
             <div>
                 <button className="ui primary button" type="submit" disabled={pristine || submitting}>Pagar</button>
                 <button className="ui button" type="button" disabled={pristine || submitting} onClick={reset}>
-                    Clear Values
+                    Borrar
                 </button>
             </div>
           </form>

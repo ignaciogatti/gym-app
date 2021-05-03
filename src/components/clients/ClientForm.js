@@ -16,7 +16,7 @@ const validate = values => {
   return errors
 }
 
-class CLientForm extends React.Component {
+class ClientForm extends React.Component {
 
 
     render() {
@@ -55,13 +55,14 @@ class CLientForm extends React.Component {
                     component="input"
                     type="text"
                     placeholder="DNI"
+                    disabled={this.props.isEditing}
                 />
               </div>
             </div>
             <div>
-                <button className="ui primary button" type="submit" disabled={pristine || submitting}>Submit</button>
+                <button className="ui primary button" type="submit" disabled={pristine || submitting}>Guardar</button>
                 <button className="ui button" type="button" disabled={pristine || submitting} onClick={reset}>
-                    Clear Values
+                    Borrar
                 </button>
             </div>
           </form>
@@ -71,7 +72,7 @@ class CLientForm extends React.Component {
 }
 
 
-CLientForm.propTypes = {
+ClientForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
     reset: PropTypes.func.isRequired,
@@ -81,6 +82,6 @@ CLientForm.propTypes = {
 export default reduxForm({
     form: 'clientForm',
     validate
-})(CLientForm);
+})(ClientForm);
 
 

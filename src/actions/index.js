@@ -38,11 +38,6 @@ export const fetchClients = () => async dispatch =>{
     dispatch({type: FETCH_CLIENTS, payload: response.data.clients});
 }
 
-export const fetchClient = (dni) => async dispatch =>{
-    const response = await gymDB.get(`/getClient/${dni}`);
-
-    dispatch({type: FETCH_CLIENT, payload: response.client});
-}
 
 export const editClient = (filter, values) => async dispatch => {
     const query={
@@ -55,10 +50,18 @@ export const editClient = (filter, values) => async dispatch => {
     history.push('/');
 }
 
-export const deleteStream = (dni) => async dispatch => {
-    await gymDB.delete(`/deleteClient/${dni}`)
+export const deleteClient = values => async dispatch => {
 
-    dispatch({type: DELETE_CLIENT, payload: dni})
+    const filter  = {
+        'filter':{
+            'dni': values.dni
+        }
+    }
+
+    console.log(filter);
+    await gymDB.delete('/deleteClient/', { data: filter});
+
+    dispatch({type: DELETE_CLIENT, payload: values.dni});
     history.push('/');
 }
 
@@ -77,8 +80,9 @@ export const makePayment = values => async (dispatch) => {
     history.push('/');
 };
 
-export const fetchClientPayments = (nombre, apellido, dni) => async dispatch =>{
-    const response = await gymDB.get(`/getClient/${dni}`);
+export const fetchClientPayments = (currrentClient) => async dispatch =>{
 
-    dispatch({type: FETCH_CLIENT_PAYMENTS, payload: response.clientPeyments});
+    const response = await gymDB.get(`/getClientPayments/${currrentClient.dni}`);
+
+    dispatch({type: FETCH_CLIENT_PAYMENTS, payload: response.data.clientPayments});
 }

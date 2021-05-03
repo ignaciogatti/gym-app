@@ -21,7 +21,8 @@ class ClientEdit extends React.Component{
                 <h3>Editar Cliente</h3>
                 <ClientForm 
                     initialValues={_.pick(this.props.currentClient, 'nombre', 'apellido', 'dni')}
-                    onSubmit={this.onSubmit} 
+                    onSubmit={this.onSubmit}
+                    isEditing={true} 
                 />
             </div>
             

@@ -21,7 +21,11 @@ class ClientCreate extends React.Component {
         return (
             <div>
                 <h3>Crear Cliente</h3>
-                <ClientForm ref="myForm" onSubmit={this.onSubmit}/>
+                <ClientForm 
+                    ref="myForm" 
+                    onSubmit={this.onSubmit} 
+                    isEditing={false
+                }/>
             </div>
             
         );
