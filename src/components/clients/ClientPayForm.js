@@ -45,6 +45,19 @@ class ClientPayForm extends React.Component {
               </div>
             </div>
             <div>
+              <label>Forma de pago</label>
+              <div>
+                <Field
+                    name="formaPago"
+                    component="select"
+                >
+                <option />
+                <option >Efectivo</option>
+                <option >Tarjeta</option>
+              </Field>
+              </div>
+            </div>
+            <div>
               <label>Monto</label>
               <div>
                 <Field

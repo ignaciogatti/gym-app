@@ -8,6 +8,7 @@ import Header from './Header';
 import history from '../history';
 import ClientPay from './clients/ClientPay';
 import ClientDetails from './clients/ClientDetails';
+import ClientBirthday from './clients/ClientBirthday';
 
 class App extends React.Component{
 
@@ -24,6 +25,7 @@ class App extends React.Component{
                         <Route path="/delete/:id" exact component={ClientDelete} />
                         <Route path="/search" exact component={ClientShow} />
                         <Route path="/pay" exact component={ClientPay} />
+                        <Route path="/birthday" exact component={ClientBirthday} />
                     </Switch>
                 </div>
                 </Router>

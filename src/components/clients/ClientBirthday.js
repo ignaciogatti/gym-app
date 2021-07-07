@@ -3,15 +3,30 @@ import {connect} from 'react-redux';
 import {fetchClients, updateCurrentClient} from '../../actions';
 import {Link} from 'react-router-dom';
 
-class ClientList extends React.Component {
 
+
+class ClientBirthday extends React.Component{
+    
     componentDidMount(){
         this.props.fetchClients();
     }
 
+    findBirthdayClients(){
+        const currentDay = new Date();
+        return this.props.clients.filter(client => {
+            const birthday = new Date(client.fechaNacimiento);
+            
+            const dd = birthday.getDate() + 1;
+            const mm = birthday.getMonth() ; //January is 0!
+
+            return ((dd === currentDay.getDate())&&(mm === currentDay.getMonth()))
+          });
+    }
 
     renderList(){
-        return this.props.clients.map( client =>{
+
+        const birthdayClients = this.findBirthdayClients();
+        return birthdayClients.map( client =>{
             
             const birthday = new Date(client.fechaNacimiento);
             const dd = String(birthday.getDate() + 1);
@@ -48,18 +63,20 @@ class ClientList extends React.Component {
             );
         })
     }
-
-
+    
     render(){
+        const currentDay = new Date();
+
         return (
             <div>
-                <h3>Clientes</h3>
+                <h3>Cumpleaños del día {currentDay.toLocaleDateString() + ''}</h3>
                 <div className="ui cards" >{this.renderList()}</div>
             </div>
             
         );
     }
 }
+
 
 const mapStateToProps = (state) =>{
     return { 
@@ -69,4 +86,4 @@ const mapStateToProps = (state) =>{
 }
 
 
-export default connect(mapStateToProps, {fetchClients, updateCurrentClient})( ClientList);
+export default connect(mapStateToProps, {fetchClients, updateCurrentClient})(ClientBirthday);

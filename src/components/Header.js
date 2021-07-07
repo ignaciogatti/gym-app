@@ -22,6 +22,16 @@ const Header = ()=>{
                     Buscar cliente
                 </Link>
             </div>
+            <div className="right menu">
+                <Link to="/birthday" className="item">
+                    Cumpleaños del día
+                </Link>
+            </div>
+            <div className="right menu">
+                <Link to="/search" className="item">
+                    Deudores
+                </Link>
+            </div>
         </div>
     );
 }

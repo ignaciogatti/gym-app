@@ -18,6 +18,19 @@ const validate = values => {
 
 class ClientForm extends React.Component {
 
+    renderDayOption(){
+
+      const days =[...Array(31).keys()];
+
+      return days.map(day =>{
+
+        return(
+          <option>{day+1}</option>
+        );
+      });
+
+    }
+
 
     render() {
 
@@ -48,6 +61,17 @@ class ClientForm extends React.Component {
                 </div>
             </div>
             <div>
+              <label>Fecha de nacimiento</label>
+              <div>
+                <Field
+                    name="fechaNacimiento"
+                    component="input"
+                    type="date"
+                    placeholder="FechaNacimiento"
+                />
+              </div>
+            </div>
+            <div>
               <label>DNI</label>
               <div>
                 <Field
@@ -59,6 +83,34 @@ class ClientForm extends React.Component {
                 />
               </div>
             </div>
+            <div>
+              <label>Teléfono</label>
+              <div>
+                <Field
+                    name="telefono"
+                    component="input"
+                    type="text"
+                    placeholder=" e.j: 02281 021564"
+                    disabled={this.props.isEditing}
+                />
+              </div>
+            </div>
+            <div>
+              <label>Fecha de pago temprana</label>
+              <div>
+              <Field
+                    name="fechaPagoTemprana"
+                    component="select"
+                >
+                <option />
+                {
+                  this.renderDayOption()
+                }
+              </Field>
+              </div>
+            </div>
+            
+            
             <div>
                 <button className="ui primary button" type="submit" disabled={pristine || submitting}>Guardar</button>
                 <button className="ui button" type="button" disabled={pristine || submitting} onClick={reset}>
