@@ -91,7 +91,6 @@ class ClientForm extends React.Component {
                     component="input"
                     type="text"
                     placeholder=" e.j: 02281 021564"
-                    disabled={this.props.isEditing}
                 />
               </div>
             </div>

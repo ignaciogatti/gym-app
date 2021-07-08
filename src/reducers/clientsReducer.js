@@ -16,7 +16,7 @@ export default (state=INITIAL_STATE, action) =>{
         case CREATE_CLIENT:
             return [...state];
         case EDIT_CLIENT:
-            return { ...state, [action.payload.id]: action.payload };
+            return [...state];
         case DELETE_CLIENT:
             return [...state];
         default:

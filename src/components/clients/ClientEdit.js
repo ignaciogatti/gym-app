@@ -12,15 +12,19 @@ class ClientEdit extends React.Component{
     onSubmit = (values)=>{
         values.nombre = values.nombre.toLowerCase();
         values.apellido = values.apellido.toLowerCase();
-        this.props.editClient(values);
+        this.props.editClient({'dni': this.props.currentClient.dni }, values);
     }
     
     render(){
+
+        const birthday = new Date(this.props.currentClient.fechaNacimiento);
+        this.props.currentClient.fechaNacimiento = birthday.toISOString().split('T')[0]
+        
         return (
             <div>
                 <h3>Editar Cliente</h3>
                 <ClientForm 
-                    initialValues={_.pick(this.props.currentClient, 'nombre', 'apellido', 'dni')}
+                    initialValues={_.pick(this.props.currentClient, 'nombre', 'apellido','fechaNacimiento', 'dni', 'telefono', 'fechaPagoTemprana')}
                     onSubmit={this.onSubmit}
                     isEditing={true} 
                 />
