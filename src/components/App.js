@@ -9,6 +9,9 @@ import history from '../history';
 import ClientPay from './clients/ClientPay';
 import ClientDetails from './clients/ClientDetails';
 import ClientBirthday from './clients/ClientBirthday';
+import PlanCreate from './plans/PlanCreate';
+import PlanList from './plans/PlanList';
+import PlanEdit from './plans/PlanEdit'
 
 class App extends React.Component{
 
@@ -26,6 +29,9 @@ class App extends React.Component{
                         <Route path="/search" exact component={ClientShow} />
                         <Route path="/pay" exact component={ClientPay} />
                         <Route path="/birthday" exact component={ClientBirthday} />
+                        <Route path="/plannews" exact component={PlanCreate} />
+                        <Route path="/planlist" exact component={PlanList} />
+                        <Route path="/planedit" exact component={PlanEdit} />
                     </Switch>
                 </div>
                 </Router>

@@ -1,5 +1,7 @@
 import React from 'react';
+import {fetchPlans} from '../../actions';
 import {reduxForm, Field} from 'redux-form';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 const validate = values => {
@@ -14,6 +16,14 @@ const validate = values => {
 }
 
 class ClientPayForm extends React.Component {
+
+
+
+
+  componentDidMount(){
+    this.props.fetchPlans();
+    this.props.initialize({ monto: '0.0' });
+  }
 
 
     render() {
@@ -57,6 +67,26 @@ class ClientPayForm extends React.Component {
               </Field>
               </div>
             </div>
+
+            <div>
+              <label>Plan</label>
+              <div>
+                <Field
+                    name="Plan"
+                    component="select"
+                >
+                <option />
+                {this.props.plans.map(plan =>{
+                  return(
+                    <option>
+                      {plan.nombre}
+                    </option>
+                  )
+                })}
+              </Field>
+              </div>
+            </div>
+            
             <div>
               <label>Monto</label>
               <div>
@@ -87,6 +117,14 @@ ClientPayForm.propTypes = {
     reset: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired
   }
+
+  const mapStateToProps = (state) =>{
+    return { 
+        plans : state.plans
+     };
+}
+
+ClientPayForm = connect(mapStateToProps, {fetchPlans})(ClientPayForm);
 
 export default reduxForm({
     form: 'clientPayForm',

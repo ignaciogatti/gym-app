@@ -26,8 +26,12 @@ const Header = ()=>{
                 Planes
                 <i className="dropdown icon"></i>
                 <div className="menu">
-                    <div className="item">Ver planes</div>
-                    <div className="item">Agregar Plan</div>
+                    <div className="item">
+                    <Link to="/planlist" className="item">Ver planes</Link>
+                    </div>
+                    <div className="item">
+                        <Link to="/plannews" className="item">Agregar plan</Link>
+                    </div>
 
                 </div>
 
@@ -36,6 +40,11 @@ const Header = ()=>{
             <div className="right menu">
                 <Link to="/birthday" className="item">
                     Cumpleaños del día
+                </Link>
+            </div>
+            <div className="right menu">
+                <Link to="/search" className="item">
+                    Cobros del día
                 </Link>
             </div>
             <div className="right menu">

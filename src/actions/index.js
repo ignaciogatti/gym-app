@@ -4,11 +4,15 @@ import {SIGN_IN,
     SIGN_OUT, 
     CREATE_CLIENT,
     FETCH_CLIENTS,
-    FETCH_CLIENT,
     DELETE_CLIENT,
     EDIT_CLIENT,
     UPDATE_CURRENT_CLIENT,
-    FETCH_CLIENT_PAYMENTS} from './types';
+    FETCH_CLIENT_PAYMENTS,
+    FETCH_PLANS,
+    CREATE_PLAN,
+    UPDATE_CURRENT_PLAN,
+    EDIT_PLAN,
+    DELETE_PLAN} from './types';
 
 
 export const signIn = userId =>{
@@ -85,4 +89,54 @@ export const fetchClientPayments = (currrentClient) => async dispatch =>{
     const response = await gymDB.get(`/getClientPayments/${currrentClient.dni}`);
 
     dispatch({type: FETCH_CLIENT_PAYMENTS, payload: response.data.clientPayments});
+}
+
+export const fetchPlans = () => async dispatch =>{
+    
+    const response = await gymDB.get('/getPlans');
+    
+    dispatch({type: FETCH_PLANS, payload: response.data.clients});
+}
+
+export const createPlan = values => async (dispatch) => {
+
+    const response = await gymDB.post('/putPlan', {...values });
+    
+    dispatch({type: CREATE_PLAN, payload: response.plan});
+    history.push('/');
+};
+
+export const updateCurrentPlan = currrentPlan =>{
+    return {
+        type: UPDATE_CURRENT_PLAN,
+        payload: currrentPlan
+    };
+};
+
+
+export const editPlan = (filter, values) => async dispatch => {
+    const query={
+        'filter':filter,
+        'update': values
+    }
+    const response = await gymDB.post('/updatePlan/', query);
+
+    dispatch({type: EDIT_PLAN, payload:response.client});
+    history.push('/');
+}
+
+
+export const deletePlan = values => async dispatch => {
+
+    const filter  = {
+        'filter':{
+            'nombre': values.nombre
+        }
+    }
+
+    console.log(filter);
+    await gymDB.delete('/deletePlan/', { data: filter});
+
+    dispatch({type: DELETE_PLAN, payload: values.nombre});
+    history.push('/');
 }
