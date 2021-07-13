@@ -10,6 +10,8 @@
 
 # production
 /build
+app.yaml
+.gcloudignore
 
 # misc
 .DS_Store

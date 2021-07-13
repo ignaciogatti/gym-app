@@ -7,21 +7,32 @@ const Header = ()=>{
             <Link to="/" className="item">
                 Gym App
             </Link>
-            <div className="right menu">
-                <Link to="/" className="item">
-                    Listado cliente
-                </Link>
+            <div className="ui simple dropdown item">
+                Clientes
+                <i className="dropdown icon"></i>
+                <div className="menu">
+                    <div className="item">
+                        <Link to="/" className="item">Listado cliente</Link>
+                    </div>
+                    <div className="item">
+                        <Link to="/news" className="item">Agregar cliente</Link>
+                    </div>
+                    <div className="item">
+                        <Link to="/search" className="item">Buscar cliente</Link>
+                    </div>
+                </div>
             </div>
-            <div className="right menu">
-                <Link to="/news" className="item">
-                    Agregar cliente
-                </Link>
+            <div className="ui simple dropdown item">
+                Planes
+                <i className="dropdown icon"></i>
+                <div className="menu">
+                    <div className="item">Ver planes</div>
+                    <div className="item">Agregar Plan</div>
+
+                </div>
+
             </div>
-            <div className="right menu">
-                <Link to="/search" className="item">
-                    Buscar cliente
-                </Link>
-            </div>
+
             <div className="right menu">
                 <Link to="/birthday" className="item">
                     Cumpleaños del día
