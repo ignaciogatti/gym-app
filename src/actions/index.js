@@ -15,10 +15,11 @@ import {SIGN_IN,
     DELETE_PLAN} from './types';
 
 
-export const signIn = userId =>{
+export const signIn = userLogged =>{
+
     return {
         type: SIGN_IN,
-        payload: userId
+        payload: userLogged
     };
 };
 

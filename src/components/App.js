@@ -11,7 +11,8 @@ import ClientDetails from './clients/ClientDetails';
 import ClientBirthday from './clients/ClientBirthday';
 import PlanCreate from './plans/PlanCreate';
 import PlanList from './plans/PlanList';
-import PlanEdit from './plans/PlanEdit'
+import PlanEdit from './plans/PlanEdit';
+import GoogleAuth from './LogIn';
 
 class App extends React.Component{
 
@@ -22,7 +23,7 @@ class App extends React.Component{
                 <div>
                     <Header />
                     <Switch>
-                        <Route path="/" exact component={ClientList} />
+                        <Route path="/" exact component={GoogleAuth} />
                         <Route path="/news" exact component={ClientCreate} />
                         <Route path="/edit" exact component={ClientDetails} />
                         <Route path="/delete/:id" exact component={ClientDelete} />

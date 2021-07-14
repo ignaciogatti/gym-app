@@ -18,8 +18,6 @@ const validate = values => {
 class ClientPayForm extends React.Component {
 
 
-
-
   componentDidMount(){
     this.props.fetchPlans();
     this.props.initialize({ monto: '0.0' });
