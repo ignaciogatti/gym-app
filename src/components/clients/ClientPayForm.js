@@ -28,7 +28,23 @@ class ClientPayForm extends React.Component {
 
     render() {
 
-        const { handleSubmit, pristine, reset, submitting } = this.props;
+        const { handleSubmit, pristine, reset, submitting, change, selectedPlans = [] } = this.props;
+
+        const handleUnitChange = (event, value) => {
+          const selectedPlan = this.props.plans.filter(p => {return p.nombre === value});
+          //Check if pay with discount or not
+          const currentDay = new Date();
+          let montoAPagar = 0;
+          if (currentDay.getDate() <= this.props.currentClient.fechaPagoTemprana){
+            montoAPagar = selectedPlan[0].montoDescuento;
+          }else{
+            montoAPagar = selectedPlan[0].monto;
+          }
+
+          const newMonto = [ ...selectedPlans, montoAPagar ];
+          change('monto', newMonto);
+        }
+
         return (
           <form className="ui form error" onSubmit={handleSubmit} >
             <div>
@@ -74,6 +90,7 @@ class ClientPayForm extends React.Component {
                 <Field
                     name="Plan"
                     component="select"
+                    onChange={handleUnitChange}
                 >
                 <option />
                 {this.props.plans.map(plan =>{
@@ -120,7 +137,8 @@ ClientPayForm.propTypes = {
 
   const mapStateToProps = (state) =>{
     return { 
-        plans : state.plans
+        plans : state.plans,
+        currentClient: state.currentClient
      };
 }
 
