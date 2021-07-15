@@ -5,16 +5,8 @@ import {signIn, signOut} from '../actions';
 
 class GoogleAuth extends React.Component{
 
-    componentDidUpdate(prevProps){
 
-        if (prevProps.userSigned.isSignedIn !== this.props.userSigned.isSignedIn){
-            console.log(this.props.userSigned);
-        }
-
-    }
-
-
-    responseGoogle(response){
+    responseSignInGoogle(response){
         const userLogged = {
             userId : response.profileObj.googleId,
             userMail : response.profileObj.email,
@@ -23,38 +15,67 @@ class GoogleAuth extends React.Component{
         this.props.signIn(userLogged);
     }
 
-    render(){
+    responseSignOutGoogle(){
+        this.props.signOut();
+    }
+
+    renderLogIn(){
+        return (
+
+            <div className="ui middle aligned center aligned grid">
+                <div className="column">
+                    <h2 className="ui teal image header">
+                        <div className="content">Registrarse con su cuenta</div>
+                    </h2>
+                    <div className="ui large form">
+                        <GoogleLogin
+                            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                            buttonText="Log in with Google"
+                            onSuccess={(response)=> this.responseSignInGoogle(response)}
+                            onFailure={(response)=> this.responseSignInGoogle(response)}
+                            cookiePolicy={'single_host_origin'}
+                        />
+                    </div>
+                    
+                </div>
+                
+            </div>
+        );
+    }
+
+    renderLogOut(){
 
         console.log(this.props.userSigned);
+        return (
+
+            <div className="ui middle aligned center aligned grid">
+                <div className="column">
+                    <h2 className="ui teal image header">
+                        <div className="content">Bienvenido {this.props.userSigned.userName}</div>
+                    </h2>
+                    <div className="ui large form">
+                        <GoogleLogout
+                            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                            buttonText="Logout"
+                            onLogoutSuccess={(response)=> this.responseSignOutGoogle()}
+                         >
+                    </GoogleLogout>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        );
+    }
+
+    render(){
+
 
         if (this.props.userSigned.isSignedIn){
 
-            return (
-
-                <div>
-                <GoogleLogout
-                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                    buttonText="Logout"
-                    onLogoutSuccess={(response)=> this.responseGoogle(response)}
-                    >
-                 </GoogleLogout>
-            </div>
-
-            )
+            return this.renderLogOut();
         } else{
-
-            return(
-
-                <div>
-                    <GoogleLogin
-                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                        buttonText="Log in with Google"
-                        onSuccess={(response)=> this.responseGoogle(response)}
-                        onFailure={(response)=> this.responseGoogle(response)}
-                        cookiePolicy={'single_host_origin'}
-                    />
-                </div>
-            )
+            return this.renderLogIn();
         }
     }
 }

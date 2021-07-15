@@ -13,6 +13,7 @@ import PlanCreate from './plans/PlanCreate';
 import PlanList from './plans/PlanList';
 import PlanEdit from './plans/PlanEdit';
 import GoogleAuth from './LogIn';
+import PrivateRoute from './routers/PrivateRouter'
 
 class App extends React.Component{
 
@@ -24,15 +25,16 @@ class App extends React.Component{
                     <Header />
                     <Switch>
                         <Route path="/" exact component={GoogleAuth} />
-                        <Route path="/news" exact component={ClientCreate} />
-                        <Route path="/edit" exact component={ClientDetails} />
-                        <Route path="/delete/:id" exact component={ClientDelete} />
-                        <Route path="/search" exact component={ClientShow} />
-                        <Route path="/pay" exact component={ClientPay} />
-                        <Route path="/birthday" exact component={ClientBirthday} />
-                        <Route path="/plannews" exact component={PlanCreate} />
-                        <Route path="/planlist" exact component={PlanList} />
-                        <Route path="/planedit" exact component={PlanEdit} />
+                        <PrivateRoute path="/clientlist" exact component={ClientList} />
+                        <PrivateRoute path="/news" exact component={ClientCreate} />
+                        <PrivateRoute path="/edit" exact component={ClientDetails} />
+                        <PrivateRoute path="/delete/:id" exact component={ClientDelete} />
+                        <PrivateRoute path="/search" exact component={ClientShow} />
+                        <PrivateRoute path="/pay" exact component={ClientPay} />
+                        <PrivateRoute path="/birthday" exact component={ClientBirthday} />
+                        <PrivateRoute path="/plannews" exact component={PlanCreate} />
+                        <PrivateRoute path="/planlist" exact component={PlanList} />
+                        <PrivateRoute path="/planedit" exact component={PlanEdit} />
                     </Switch>
                 </div>
                 </Router>
