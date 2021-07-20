@@ -50,7 +50,7 @@ class Header extends React.Component{
                         </Link>
                     </div>
                     <div className="right menu">
-                        <Link to="/search" className="item">
+                        <Link to="/payments" className="item">
                             Cobros del día
                         </Link>
                     </div>

@@ -6,6 +6,7 @@ import currentClientReducer from './currentClientReducer';
 import clientPaymentsReducer from './clientPaymentsReducer';
 import plansReducer from './plansReducer';
 import currentPlanReducer from './currentPlanReducer';
+import paymentsReducer from './PaymentsReducer';
 
 export default combineReducers({
   auth : authReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   currentClient : currentClientReducer,
   clientPayments : clientPaymentsReducer,
   plans: plansReducer,
-  currentPlan : currentPlanReducer
+  currentPlan : currentPlanReducer,
+  payments : paymentsReducer
 });

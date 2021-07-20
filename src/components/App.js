@@ -13,7 +13,8 @@ import PlanCreate from './plans/PlanCreate';
 import PlanList from './plans/PlanList';
 import PlanEdit from './plans/PlanEdit';
 import GoogleAuth from './LogIn';
-import PrivateRoute from './routers/PrivateRouter'
+import PrivateRoute from './routers/PrivateRouter';
+import PaymentsSearch from './payments/PaymentsSearch';
 
 class App extends React.Component{
 
@@ -35,6 +36,7 @@ class App extends React.Component{
                         <PrivateRoute path="/plannews" exact component={PlanCreate} />
                         <PrivateRoute path="/planlist" exact component={PlanList} />
                         <PrivateRoute path="/planedit" exact component={PlanEdit} />
+                        <PrivateRoute path="/payments" exact component={PaymentsSearch} />
                     </Switch>
                 </div>
                 </Router>

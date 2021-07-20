@@ -45,7 +45,6 @@ class GoogleAuth extends React.Component{
 
     renderLogOut(){
 
-        console.log(this.props.userSigned);
         return (
 
             <div className="ui middle aligned center aligned grid">

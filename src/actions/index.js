@@ -8,6 +8,7 @@ import {SIGN_IN,
     EDIT_CLIENT,
     UPDATE_CURRENT_CLIENT,
     FETCH_CLIENT_PAYMENTS,
+    FETCH_PAYMENTS,
     FETCH_PLANS,
     CREATE_PLAN,
     UPDATE_CURRENT_PLAN,
@@ -90,6 +91,12 @@ export const fetchClientPayments = (currrentClient) => async dispatch =>{
     const response = await gymDB.get(`/getClientPayments/${currrentClient.dni}`);
 
     dispatch({type: FETCH_CLIENT_PAYMENTS, payload: response.data.clientPayments});
+}
+
+export const fetchPayments = () => async dispatch =>{
+    const response = await gymDB.get('/getPayments');
+    
+    dispatch({type: FETCH_PAYMENTS, payload: response.data.payments});
 }
 
 export const fetchPlans = () => async dispatch =>{
