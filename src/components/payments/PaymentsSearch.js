@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchPayments} from '../../actions';
+import {fetchPayments, fetchClients, updateCurrentClient} from '../../actions';
 import PaymentForm from './PaymentForm';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 
 class PaymentsSearch extends React.Component {
@@ -13,6 +14,7 @@ class PaymentsSearch extends React.Component {
 
     componentDidMount(){
         this.props.fetchPayments();
+        this.props.fetchClients();
     }
 
 
@@ -29,6 +31,15 @@ class PaymentsSearch extends React.Component {
         const paymentsSelected = this.findPaymentsMonth(paymentDayStart, paymentDayEnd);
 
         this.setState({paymentsToShow : paymentsSelected});
+    }
+
+    findClient(dni){
+
+        return this.props.clients.filter( client =>{
+            return (client.dni === dni);
+        }
+
+        )
     }
 
 
@@ -50,12 +61,18 @@ class PaymentsSearch extends React.Component {
             const dd = String(paymentDay.getDate() + 1);
             const mm = String(paymentDay.getMonth() + 1 ); //January is 0!
             const yyyy = paymentDay.getFullYear();
+
+            const client = this.findClient(payment.dni)[0];
+
+
             return (
 
                 <div className="item" key={index}>
                     <div className="content">
                     <div className="header">
-                            DNI: {payment.dni}
+                        <Link to="/edit" onClick={()=>this.props.updateCurrentClient(client)}>
+                          {client.nombre + ' ' + client.apellido}
+                        </Link>
                         </div>
                         <div className="header">
                             {payment.mes}
@@ -104,9 +121,10 @@ PaymentsSearch.propTypes = {
 
 const mapStateToProps = (state) =>{
     return { 
-        payments : state.payments
-     };
+        payments : state.payments,
+        clients : state.clients
+    }
 }
 
 
-export default connect(mapStateToProps, {fetchPayments})(PaymentsSearch);
+export default connect(mapStateToProps, {fetchPayments, fetchClients, updateCurrentClient})(PaymentsSearch);

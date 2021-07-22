@@ -14,6 +14,8 @@ class ClientPay extends React.Component {
     };
 
     values.monto = parseFloat(values.monto);
+    values.mes = values.mes.toLowerCase();
+    values.formaPago = values.formaPago.toLowerCase();
 
     this.props.makePayment(values);
 
